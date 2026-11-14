@@ -1,0 +1,15 @@
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.env
+.env.*
+.secrets/
+.codex/hooks.json
+.codex/hook-events.jsonl
+reports/
+dist/
+build/
