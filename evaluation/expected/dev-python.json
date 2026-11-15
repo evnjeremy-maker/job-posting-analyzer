@@ -1,0 +1,42 @@
+{
+  "overview": {
+    "title": {
+      "text": "Python Intern",
+      "quote": "Python Intern"
+    },
+    "employer": {
+      "text": "Fictional Aster Lab",
+      "quote": "Fictional Aster Lab"
+    },
+    "location": null,
+    "work_arrangement": null,
+    "employment_type": null,
+    "salary": null,
+    "deadline": null
+  },
+  "required": [
+    {
+      "text": "Python",
+      "quote": "Python is required."
+    }
+  ],
+  "preferred": [
+    {
+      "text": "SQL",
+      "quote": "SQL is a plus."
+    }
+  ],
+  "responsibilities": [
+    {
+      "text": "Write tests",
+      "quote": "You will write tests."
+    }
+  ],
+  "application_materials": [
+    {
+      "text": "Resume",
+      "quote": "Include a resume."
+    }
+  ],
+  "ambiguities": []
+}

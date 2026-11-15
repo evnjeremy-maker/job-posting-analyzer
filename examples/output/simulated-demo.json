@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "analysis": {
+    "overview": {
+      "title": {
+        "text": "AI Engineer Intern",
+        "quote": "AI Engineer Intern"
+      },
+      "employer": null,
+      "location": null,
+      "work_arrangement": null,
+      "employment_type": null,
+      "salary": null,
+      "deadline": null,
+      "working_hours": null
+    },
+    "required": [
+      {
+        "text": "University student status",
+        "quote": "Applicants must be university students with Python and Git experience."
+      },
+      {
+        "text": "Python experience",
+        "quote": "Applicants must be university students with Python and Git experience."
+      },
+      {
+        "text": "Git experience",
+        "quote": "Applicants must be university students with Python and Git experience."
+      }
+    ],
+    "preferred": [
+      {
+        "text": "SQL knowledge",
+        "quote": "SQL knowledge is preferred."
+      }
+    ],
+    "responsibilities": [
+      {
+        "text": "Build applications using language models",
+        "quote": "You will help build applications using language models."
+      }
+    ],
+    "application_materials": [
+      {
+        "text": "GitHub portfolio",
+        "quote": "Include a GitHub portfolio with your application."
+      }
+    ],
+    "ambiguities": []
+  },
+  "comparison": [
+    {
+      "requirement_id": "r1",
+      "status": "matched",
+      "evidence": [
+        {
+          "pointer": "/education/0",
+          "quote": "Computer Science university student."
+        }
+      ],
+      "explanation": "The profile explicitly states university student status."
+    },
+    {
+      "requirement_id": "r2",
+      "status": "partial",
+      "evidence": [
+        {
+          "pointer": "/skills/0",
+          "quote": "Python basics"
+        }
+      ],
+      "explanation": "Only basic Python is stated; the employer's expected level remains unclear."
+    },
+    {
+      "requirement_id": "r3",
+      "status": "matched",
+      "evidence": [
+        {
+          "pointer": "/skills/1",
+          "quote": "Git for personal projects"
+        }
+      ],
+      "explanation": "The profile explicitly reports using Git for personal projects."
+    },
+    {
+      "requirement_id": "p1",
+      "status": "missing",
+      "evidence": [
+        {
+          "pointer": "/explicitly_missing/0",
+          "quote": "SQL"
+        }
+      ],
+      "explanation": "SQL is explicitly listed as not learned; it is preferred, not mandatory."
+    }
+  ],
+  "provider": "simulated",
+  "model": "fictional-fixture",
+  "prompt": "zero-shot",
+  "simulated": true,
+  "portfolio_availability": "GitHub portfolio available (self-reported)",
+  "usage": null
+}

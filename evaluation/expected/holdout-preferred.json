@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "title": {
+      "text": "Research Intern",
+      "quote": "Research Intern"
+    },
+    "employer": {
+      "text": "Fictional Birch Data",
+      "quote": "Fictional Birch Data"
+    },
+    "location": null,
+    "work_arrangement": null,
+    "employment_type": null,
+    "salary": null,
+    "deadline": null
+  },
+  "required": [
+    {
+      "text": "Python",
+      "quote": "Python is required."
+    }
+  ],
+  "preferred": [
+    {
+      "text": "R",
+      "quote": "R experience is optional."
+    }
+  ],
+  "responsibilities": [
+    {
+      "text": "Analyze data",
+      "quote": "You will analyze data."
+    }
+  ],
+  "application_materials": [],
+  "ambiguities": []
+}

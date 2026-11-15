@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "label_provenance": "agent-authored; independently agent-reviewed; no human review",
+  "frozen_before_prompt_tuning": true,
+  "cases": [
+    {
+      "id": "dev-python",
+      "split": "development",
+      "job_path": "examples/jobs/dev-python.txt",
+      "expected_path": "evaluation/expected/dev-python.json"
+    },
+    {
+      "id": "dev-student",
+      "split": "development",
+      "job_path": "examples/jobs/dev-student.txt",
+      "expected_path": "evaluation/expected/dev-student.json"
+    },
+    {
+      "id": "dev-missing",
+      "split": "development",
+      "job_path": "examples/jobs/dev-missing.txt",
+      "expected_path": "evaluation/expected/dev-missing.json"
+    },
+    {
+      "id": "val-materials",
+      "split": "validation",
+      "job_path": "examples/jobs/val-materials.txt",
+      "expected_path": "evaluation/expected/val-materials.json"
+    },
+    {
+      "id": "val-conflict",
+      "split": "validation",
+      "job_path": "examples/jobs/val-conflict.txt",
+      "expected_path": "evaluation/expected/val-conflict.json"
+    },
+    {
+      "id": "val-injection",
+      "split": "validation",
+      "job_path": "examples/jobs/val-injection.txt",
+      "expected_path": "evaluation/expected/val-injection.json"
+    },
+    {
+      "id": "holdout-preferred",
+      "split": "holdout",
+      "job_path": "examples/jobs/holdout-preferred.txt",
+      "expected_path": "evaluation/expected/holdout-preferred.json"
+    },
+    {
+      "id": "holdout-responsibility",
+      "split": "holdout",
+      "job_path": "examples/jobs/holdout-responsibility.txt",
+      "expected_path": "evaluation/expected/holdout-responsibility.json"
+    },
+    {
+      "id": "holdout-unicode",
+      "split": "holdout",
+      "job_path": "examples/jobs/holdout-unicode.txt",
+      "expected_path": "evaluation/expected/holdout-unicode.json"
+    }
+  ]
+}

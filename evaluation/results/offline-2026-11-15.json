@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.0",
+  "simulated": true,
+  "model_accuracy_measured": false,
+  "scoring": "Casefolded whitespace-normalized exact category/text matching; equivalent paraphrases can be counted as errors. Classification errors overlap with omission/unsupported counts; do not add those counts together. Unsupported means absent from expected labels, not proven hallucination; inspect the case details.",
+  "label_provenance": "Agent-authored labels; independently agent-reviewed; no human review.",
+  "case_count": 6,
+  "planned_extractions": 12,
+  "logical_requests": 0,
+  "http_attempts": 0,
+  "http_attempt_limit": 0,
+  "failed_extractions": 0,
+  "failed_cases": [],
+  "results": [
+    {
+      "case_id": "val-materials",
+      "split": "validation",
+      "variant": "zero-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 0.0003248000000439788,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 8,
+        "valid": 8,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 8,
+        "predicted_items": 8,
+        "correct_items": 8,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "val-materials",
+      "split": "validation",
+      "variant": "few-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 0.0001283999999941443,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 8,
+        "valid": 8,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 8,
+        "predicted_items": 8,
+        "correct_items": 8,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "val-conflict",
+      "split": "validation",
+      "variant": "zero-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 8.800000000519503e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 5,
+        "valid": 5,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "val-conflict",
+      "split": "validation",
+      "variant": "few-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 7.139999996752522e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 5,
+        "valid": 5,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "val-injection",
+      "split": "validation",
+      "variant": "zero-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 7.34999999849606e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "val-injection",
+      "split": "validation",
+      "variant": "few-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 6.530000001703229e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-preferred",
+      "split": "holdout",
+      "variant": "zero-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 7.21999999768741e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 5,
+        "valid": 5,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 5,
+        "predicted_items": 5,
+        "correct_items": 5,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-preferred",
+      "split": "holdout",
+      "variant": "few-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 6.95999999607011e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 5,
+        "valid": 5,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 5,
+        "predicted_items": 5,
+        "correct_items": 5,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-responsibility",
+      "split": "holdout",
+      "variant": "zero-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 6.569999999328502e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-responsibility",
+      "split": "holdout",
+      "variant": "few-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 6.480000001829467e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-unicode",
+      "split": "holdout",
+      "variant": "zero-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 0.00010139999994862592,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 7,
+        "valid": 7,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 7,
+        "predicted_items": 7,
+        "correct_items": 7,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-unicode",
+      "split": "holdout",
+      "variant": "few-shot",
+      "simulated": true,
+      "model": "simulated-fixture-replay",
+      "response_seconds": null,
+      "processing_seconds": 8.489999999028441e-05,
+      "usage": null,
+      "format_valid": true,
+      "quotes": {
+        "total": 7,
+        "valid": 7,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 7,
+        "predicted_items": 7,
+        "correct_items": 7,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    }
+  ]
+}

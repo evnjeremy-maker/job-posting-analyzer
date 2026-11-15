@@ -1,0 +1,35 @@
+{
+  "overview": {
+    "title": {
+      "text": "Analyst",
+      "quote": "Analyst"
+    },
+    "employer": {
+      "text": "Fictional Atlas Works",
+      "quote": "Fictional Atlas Works"
+    },
+    "location": null,
+    "work_arrangement": null,
+    "employment_type": null,
+    "salary": null,
+    "deadline": null
+  },
+  "required": [
+    {
+      "text": "SQL",
+      "quote": "SQL is required."
+    }
+  ],
+  "preferred": [],
+  "responsibilities": [],
+  "application_materials": [],
+  "ambiguities": [
+    {
+      "text": "Remote work conflicts with daily office attendance.",
+      "quotes": [
+        "This role is fully remote.",
+        "Daily office attendance is required."
+      ]
+    }
+  ]
+}

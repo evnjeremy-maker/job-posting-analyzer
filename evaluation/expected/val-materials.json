@@ -1,0 +1,49 @@
+{
+  "overview": {
+    "title": {
+      "text": "Backend Intern",
+      "quote": "Backend Intern"
+    },
+    "employer": {
+      "text": "Fictional North Workshop",
+      "quote": "Fictional North Workshop"
+    },
+    "location": null,
+    "work_arrangement": null,
+    "employment_type": null,
+    "salary": {
+      "text": "USD 20 per hour",
+      "quote": "Salary: USD 20 per hour."
+    },
+    "deadline": null
+  },
+  "required": [
+    {
+      "text": "Python",
+      "quote": "Python is required."
+    }
+  ],
+  "preferred": [
+    {
+      "text": "Docker",
+      "quote": "Docker knowledge is preferred."
+    }
+  ],
+  "responsibilities": [
+    {
+      "text": "Build APIs",
+      "quote": "You will build APIs."
+    }
+  ],
+  "application_materials": [
+    {
+      "text": "Resume",
+      "quote": "Submit a resume and cover letter."
+    },
+    {
+      "text": "Cover letter",
+      "quote": "Submit a resume and cover letter."
+    }
+  ],
+  "ambiguities": []
+}

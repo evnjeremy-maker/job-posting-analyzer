@@ -1,0 +1,32 @@
+{
+  "overview": {
+    "title": {
+      "text": "Software Intern",
+      "quote": "Software Intern"
+    },
+    "employer": {
+      "text": "Fictional Dawn Systems",
+      "quote": "Fictional Dawn Systems"
+    },
+    "location": null,
+    "work_arrangement": null,
+    "employment_type": null,
+    "salary": null,
+    "deadline": null
+  },
+  "required": [
+    {
+      "text": "Current student status",
+      "quote": "Current student status is required."
+    }
+  ],
+  "preferred": [],
+  "responsibilities": [
+    {
+      "text": "Build machine-learning demos",
+      "quote": "You will build machine-learning demos."
+    }
+  ],
+  "application_materials": [],
+  "ambiguities": []
+}

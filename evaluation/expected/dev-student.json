@@ -1,0 +1,42 @@
+{
+  "overview": {
+    "title": {
+      "text": "Student Developer",
+      "quote": "Student Developer"
+    },
+    "employer": {
+      "text": "Fictional Cedar Studio",
+      "quote": "Fictional Cedar Studio"
+    },
+    "location": null,
+    "work_arrangement": null,
+    "employment_type": null,
+    "salary": null,
+    "deadline": null
+  },
+  "required": [
+    {
+      "text": "Current university student",
+      "quote": "Applicants must be current university students."
+    }
+  ],
+  "preferred": [
+    {
+      "text": "Git",
+      "quote": "Git is preferred."
+    }
+  ],
+  "responsibilities": [
+    {
+      "text": "Maintain scripts",
+      "quote": "You will maintain scripts."
+    }
+  ],
+  "application_materials": [
+    {
+      "text": "Portfolio",
+      "quote": "Send a portfolio."
+    }
+  ],
+  "ambiguities": []
+}

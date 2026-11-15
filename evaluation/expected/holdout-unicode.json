@@ -1,0 +1,41 @@
+{
+  "overview": {
+    "title": {
+      "text": "Developer",
+      "quote": "Developer"
+    },
+    "employer": {
+      "text": "Fictional Café Tools",
+      "quote": "Fictional Café Tools"
+    },
+    "location": {
+      "text": "Montréal",
+      "quote": "Work location: Montréal."
+    },
+    "work_arrangement": null,
+    "employment_type": {
+      "text": "Part-time",
+      "quote": "Employment type: part-time."
+    },
+    "salary": null,
+    "deadline": {
+      "text": "30 November 2026",
+      "quote": "Apply by 30 November 2026."
+    }
+  },
+  "required": [
+    {
+      "text": "Python",
+      "quote": "Python is required."
+    }
+  ],
+  "preferred": [],
+  "responsibilities": [],
+  "application_materials": [
+    {
+      "text": "GitHub link",
+      "quote": "Include a GitHub link."
+    }
+  ],
+  "ambiguities": []
+}

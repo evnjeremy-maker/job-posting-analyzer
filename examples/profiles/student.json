@@ -1,0 +1,9 @@
+{
+  "education": ["Computer Science university student."],
+  "skills": ["Python basics", "Git for personal projects"],
+  "projects": ["Personal Python practice projects"],
+  "experience": [],
+  "preferences": [],
+  "explicitly_missing": ["SQL"],
+  "portfolio": "GitHub portfolio available (self-reported)"
+}

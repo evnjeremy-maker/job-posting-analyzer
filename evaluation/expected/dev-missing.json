@@ -1,0 +1,35 @@
+{
+  "overview": {
+    "title": {
+      "text": "Data Assistant",
+      "quote": "Data Assistant"
+    },
+    "employer": {
+      "text": "Fictional Lumen Co",
+      "quote": "Fictional Lumen Co"
+    },
+    "location": null,
+    "work_arrangement": {
+      "text": "Hybrid",
+      "quote": "The role is hybrid."
+    },
+    "employment_type": null,
+    "salary": null,
+    "deadline": null
+  },
+  "required": [
+    {
+      "text": "Attention to detail",
+      "quote": "Attention to detail is required."
+    }
+  ],
+  "preferred": [],
+  "responsibilities": [
+    {
+      "text": "Clean datasets",
+      "quote": "You will clean datasets."
+    }
+  ],
+  "application_materials": [],
+  "ambiguities": []
+}
