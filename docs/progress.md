@@ -1,6 +1,16 @@
 # Progress
 
-Status: implementation
+Status: complete
+
+## Completed project delivery — 2026-11-15
+
+Published https://github.com/evnjeremy-maker/job-posting-analyzer as a public repository on main, with complete local development history and no license file. GitHub readback confirmed public visibility and license null. Hosted extraction, profile comparison and both-prompt evaluation were performed on fictional inputs within 23 SDK attempts (cap 24); no paid services or billing changes were enabled.
+
+Final local gate passed Ruff, formatting, and 180 tests. Independent code/publication review passed after fixes and explicit disclosure of semantic limitations. Windows and Linux CI passed for code commit f3934958118d0c94e93e2dcca5660a55b30dce85: https://github.com/evnjeremy-maker/job-posting-analyzer/actions/runs/43734746690. A subsequent documentation-only completion commit records these already observed results.
+
+Known limitations remain: exact-label scoring penalizes paraphrases; the conflict case populated overview facts despite flagging contradiction; the live profile example overmatched Python basics instead of the intended partial. Evidence/schema validation is not semantic correctness. Labels/code received agent review, not human review. The project requires an editable source checkout for fixtures. Hook protection remains bounded and does not replace the sandbox. These are disclosed limits, not hidden successful-result claims.
+
+No further Gemini calls are needed for this delivery. Earlier pending/blocked statements below are historical and superseded by this completion record.
 
 ## Live verification resumed — 2026-11-15
 

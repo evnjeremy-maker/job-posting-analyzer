@@ -17,7 +17,7 @@ On Linux, use `.venv/bin/python` instead of `.venv/Scripts/python.exe`.
 
 Run these commands from the cloned repository. Few-shot prompts and evaluation require its fixture assets and an editable (`-e`) source checkout; a standalone wheel without those assets is not supported. Redirected CLI output uses UTF-8.
 
-The verification command runs Ruff and offline pytest tests. It requires no API key and makes no Gemini requests. CI configuration is prepared for Windows/Linux but has not run on GitHub.
+The verification command runs Ruff and offline pytest tests. It requires no API key and makes no Gemini requests. Windows and Linux GitHub CI checks passed for the live-verified implementation: [observed workflow run](https://github.com/evnjeremy-maker/job-posting-analyzer/actions/runs/43734746690).
 
 ## Current state
 

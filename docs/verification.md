@@ -1,5 +1,15 @@
 # Verification record
 
+## Published delivery — 2026-11-15
+
+- Repository: https://github.com/evnjeremy-maker/job-posting-analyzer, public, default branch main, no license file. Public API readback confirmed these settings.
+- Published code commit: f3934958118d0c94e93e2dcca5660a55b30dce85. Local final gate: Ruff passed, 44 files formatted, 180 tests passed in 6.59 seconds.
+- Observed GitHub Actions run 43734746690 completed successfully with verify jobs on windows-latest and ubuntu-latest: https://github.com/evnjeremy-maker/job-posting-analyzer/actions/runs/43734746690.
+- The actual configured Gemini key was absent from the 76 publishable files and Git history checked before publication. The credential manager's GitHub token stayed in memory; neither credential was printed or written to the repository. No secrets were added to CI.
+- Live model and comparison limitations, failed diagnostics, real usage, and agent-only review provenance are retained below and in published artifacts. No guarantee of hiring outcomes, general semantic accuracy, or comprehensive hook protection is claimed.
+
+The completion record is a documentation-only follow-up to the observed code CI run. Earlier unverified-publication/CI statements are historical and superseded here.
+
 ## Live provider verification — 2026-11-15
 
 The configured key was checked by presence only. Jeremy had confirmed the Free tier with billing disabled. All advertisements/profiles sent were fictional. The parent made the live calls; workers and CI did not. The session used **23 SDK request attempts**, including failures and diagnostics, below its cap of 24. A request attempt can fail before reaching the service, so this is not a claim that Google processed 23 requests.

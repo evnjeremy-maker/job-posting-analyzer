@@ -1,5 +1,9 @@
 # Development log
 
+## 2026-11-15: Public delivery and CI
+
+The parent published the approved public repository under evnjeremy-maker using the existing Git credential manager because the connected GitHub tools could not create repositories. Connector and credential-manager identities matched. The local commit history was pushed without force and without a license file. Windows and Linux CI both passed for f393495; repository visibility, main branch and absent license were checked through GitHub's public API. No GitHub issues, comments, review requests, paid operations or credential changes were made. A final documentation commit records observed results and known semantic limitations.
+
 ## 2026-11-15: Live verification and provider compatibility fix
 
 After Jeremy configured the Windows environment variable, the parent verified the hosted provider with fictional inputs. Real API testing exposed a schema-transport incompatibility missed by offline SDK mocks: the legacy response_schema rejected additional_properties. A failing regression preceded the one-field change to response_json_schema. Independent review passed, and strict Python validation stayed intact.
