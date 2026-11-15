@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "analysis": {
+    "overview": {
+      "title": {
+        "text": "AI Engineer Intern",
+        "quote": "AI Engineer Intern"
+      },
+      "employer": null,
+      "location": null,
+      "work_arrangement": null,
+      "employment_type": null,
+      "salary": null,
+      "deadline": null,
+      "working_hours": null
+    },
+    "required": [
+      {
+        "text": "university student",
+        "quote": "Applicants must be university students"
+      },
+      {
+        "text": "Python experience",
+        "quote": "Python and Git experience"
+      },
+      {
+        "text": "Git experience",
+        "quote": "Python and Git experience"
+      }
+    ],
+    "preferred": [
+      {
+        "text": "SQL knowledge",
+        "quote": "SQL knowledge is preferred"
+      }
+    ],
+    "responsibilities": [
+      {
+        "text": "help build applications using language models",
+        "quote": "You will help build applications using language models"
+      }
+    ],
+    "application_materials": [
+      {
+        "text": "GitHub portfolio",
+        "quote": "Include a GitHub portfolio with your application"
+      }
+    ],
+    "ambiguities": []
+  },
+  "comparison": [
+    {
+      "requirement_id": "r1",
+      "status": "matched",
+      "evidence": [
+        {
+          "pointer": "/education/0",
+          "quote": "Computer Science university student."
+        }
+      ],
+      "explanation": "The applicant explicitly identifies as a university student."
+    },
+    {
+      "requirement_id": "r2",
+      "status": "matched",
+      "evidence": [
+        {
+          "pointer": "/skills/0",
+          "quote": "Python basics"
+        }
+      ],
+      "explanation": "The applicant confirms experience with Python."
+    },
+    {
+      "requirement_id": "r3",
+      "status": "matched",
+      "evidence": [
+        {
+          "pointer": "/skills/1",
+          "quote": "Git for personal projects"
+        }
+      ],
+      "explanation": "The applicant confirms experience with Git."
+    },
+    {
+      "requirement_id": "p1",
+      "status": "missing",
+      "evidence": [
+        {
+          "pointer": "/explicitly_missing/0",
+          "quote": "SQL"
+        }
+      ],
+      "explanation": "The applicant explicitly stated in the profile that SQL skills are missing."
+    }
+  ],
+  "provider": "gemini",
+  "model": "gemini-3.1-flash-lite",
+  "prompt": "zero-shot",
+  "simulated": false,
+  "portfolio_availability": "GitHub portfolio available (self-reported)",
+  "usage": {
+    "input_tokens": 643,
+    "output_tokens": 624,
+    "total_tokens": 1267
+  }
+}

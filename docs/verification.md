@@ -1,5 +1,32 @@
 # Verification record
 
+## Live provider verification — 2026-11-15
+
+The configured key was checked by presence only. Jeremy had confirmed the Free tier with billing disabled. All advertisements/profiles sent were fictional. The parent made the live calls; workers and CI did not. The session used **23 SDK request attempts**, including failures and diagnostics, below its cap of 24. A request attempt can fail before reaching the service, so this is not a claim that Google processed 23 requests.
+
+Initial failures are retained as development evidence:
+
+- Sandboxed smoke transport failed; a scoped network escalation reached Google.
+- Legacy `response_schema` produced HTTP 400 because `additional_properties` was rejected by that service field. Switching to SDK `response_json_schema=schema.model_json_schema()` fixed the request. The regression first failed, then passed; independent review confirmed validation/retry/tool settings were unchanged.
+- Initial profile comparisons claimed SQL was missing without citing its explicit negative profile entry. Python rejected these outputs. Instructions were clarified with a development example citing `/explicitly_missing/0`; the later full two-stage live comparison passed. Validation was not weakened and the holdout extraction prompts were not tuned from these failures.
+
+Successful standalone extraction: three required qualifications, validated source quotes, simulated false; returned token usage was 207 input, 310 output, 517 total. A subsequent live extraction/profile-comparison report passed all four qualification checks and was saved separately from the simulated demo.
+
+Here, passing qualification checks means valid IDs, schema and exact profile evidence, not correct interpretation. Independent publication review found that the saved live report marks Python basics as matched instead of the conservative intended partial classification. This is a known semantic error despite the instruction already requesting partial when the employer's expected level is unclear. The result is preserved and disclosed rather than replaced by a cherry-picked retry. No further request was spent tuning this example; total attempts remain 23. The simulated demo retains the intended expected behavior.
+
+| Observed live extraction result | Zero-shot | Few-shot |
+| --- | --- | --- |
+| Cases | 6 | 6 |
+| Valid output schemas | 6/6 | 6/6 |
+| Exact source quotes | 34/34 | 35/35 |
+| Complete normalized label matches | 2/6 | 3/6 |
+| Reported total tokens | 2738 | 7910 |
+| Mean observed response wall time, seconds | 11.837 | 2.187 |
+
+Wall times include any retry/transport delays and are not a controlled speed benchmark. Exact-label differences include Docker versus Docker knowledge, R versus R experience, and employer wording. The conflict case also filled an overview work-arrangement value despite flagging a contradiction; few-shot extracted office attendance as a requirement absent from expected labels. These findings require human inspection; zero measured text-based classification errors does not prove zero semantic errors. No holdout-driven tuning followed the run.
+
+Artifacts: `evaluation/results/live-2026-11-15.json`, the initial and follow-up live verification summaries, `examples/output/live-job-analysis.json`, and `examples/output/live-profile-comparison.json`. No keys, real personal profiles, or raw error bodies are stored. No monetary cost estimate is reported. Earlier notes below about live checks being pending are historical and superseded here. Public GitHub publication and observed CI remain pending at this point.
+
 ## Offline application verification — 2026-11-15
 
 Pre-commit whitespace inspection found redundant blank lines at EOF in 19 newly authored fixture files. They were normalized before any live evaluation; labels and source sentences were unchanged, and no prompt tuning used holdout outputs. The subsequent full gate passed 179 tests in 5.25 seconds, Ruff lint, and formatting (44 files). The earlier run below remains a historical observation.

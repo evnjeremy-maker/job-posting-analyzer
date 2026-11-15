@@ -72,7 +72,7 @@ class GeminiProvider:
                     config=types.GenerateContentConfig(
                         system_instruction=instruction,
                         response_mime_type="application/json",
-                        response_schema=schema,
+                        response_json_schema=schema.model_json_schema(),
                         max_output_tokens=8192,
                     ),
                 )

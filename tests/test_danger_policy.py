@@ -64,7 +64,7 @@ def test_blocks_recognizable_dangerous_commands(command):
     [
         "../outside.txt",
         "C:relative.txt",
-        "C:\\outside.txt",
+        str(ROOT.parent / "outside.txt"),
         "\\\\server\\share\\file.txt",
         ".git/config",
         ".codex/hooks.json",

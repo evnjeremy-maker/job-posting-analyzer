@@ -1,5 +1,11 @@
 # Development log
 
+## 2026-11-15: Live verification and provider compatibility fix
+
+After Jeremy configured the Windows environment variable, the parent verified the hosted provider with fictional inputs. Real API testing exposed a schema-transport incompatibility missed by offline SDK mocks: the legacy response_schema rejected additional_properties. A failing regression preceded the one-field change to response_json_schema. Independent review passed, and strict Python validation stayed intact.
+
+Live comparison then exposed omitted evidence for an explicit negative SQL statement. The invalid outputs were rejected. Comparison instructions were clarified using the development profile, and a later two-stage report passed all four qualification checks. Both extraction prompts were then measured on the same six validation/holdout cases, with failures/mismatches and usage recorded. No holdout-driven tuning or invented performance improvement is claimed. Total SDK attempts, including diagnostics and failed operations, were 23 of the 24-attempt cap.
+
 ## 2026-11-15: Analyzer implementation and offline verification
 
 After renewed approval, separate workers owned core schemas/input/evidence, CLI/report/demo, and evaluation. The parent owned prompts, SDK integration, orchestration, shared offline fixtures, documentation, installation and integration. An independent reviewer identified three blocking issues; observed failing regressions and fixes preceded a passing re-review. The final gate passed 179 tests, Ruff and formatting. A fresh environment, installed console command, demo JSON and evaluation replay were also checked. No hosted calls or public publication occurred because the API key is not configured locally.

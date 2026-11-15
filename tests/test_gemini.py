@@ -41,6 +41,36 @@ def test_valid_structured_response():
     assert provider.attempts_used == 1
 
 
+def test_provider_uses_json_schema_instead_of_legacy_schema():
+    import json
+    from types import SimpleNamespace
+
+    from job_posting_analyzer.gemini import GeminiProvider
+    from job_posting_analyzer.models import JobAnalysis
+
+    def generate_content(**kwargs):
+        config = kwargs["config"]
+        assert config.response_schema is None
+        assert config.response_json_schema == JobAnalysis.model_json_schema()
+        return SimpleNamespace(
+            candidates=[SimpleNamespace(finish_reason="STOP")],
+            text=json.dumps(
+                dict(
+                    overview={},
+                    required=[],
+                    preferred=[],
+                    responsibilities=[],
+                    application_materials=[],
+                    ambiguities=[],
+                )
+            ),
+            usage_metadata=None,
+        )
+
+    client = SimpleNamespace(models=SimpleNamespace(generate_content=generate_content))
+    GeminiProvider(client=client).extract("Fictional job", "zero-shot")
+
+
 @pytest.mark.parametrize(
     "reason,text", [("MAX_TOKENS", "{}"), ("SAFETY", "{}"), ("STOP", "not JSON")]
 )

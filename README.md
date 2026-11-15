@@ -1,6 +1,6 @@
 # AI Job Posting Analyzer
 
-Python terminal application that extracts evidence-backed job requirements and optionally compares a self-reported profile. It organizes evidence; it does not predict hiring outcomes. Live provider verification is pending local API-key configuration.
+Python terminal application that extracts evidence-backed job requirements and optionally compares a self-reported profile. It organizes evidence; it does not predict hiring outcomes. Extraction and profile comparison were verified against Gemini on fictional inputs; measured limitations are documented below.
 
 ## Bootstrap
 
@@ -54,6 +54,10 @@ Nine fictional labeled cases are split into three development examples, three va
 
 Offline evaluation replays expected fixtures for both prompt variants and explicitly sets `model_accuracy_measured` false. It proves the scoring pipeline, not real model quality. Live evaluation uses the same model/settings/cases for each variant and includes failures in the results. Normalized exact labels are used for scoring; valid paraphrases may count as errors. Durations and token counts are recorded when available, and unavailable usage remains null. No financial costs or performance improvements are invented.
 
+Observed live run on 2026-11-15: both prompts returned 6/6 structurally valid, quote-validated outputs. Zero-shot matched all expected normalized labels in 2/6 cases; few-shot in 3/6. Many differences were paraphrases such as `Docker knowledge` versus `Docker`, so these numbers are not semantic accuracy estimates. In the conflict case both prompts flagged contradictions but also filled a work-arrangement value; few-shot additionally extracted office attendance as a requirement. Review conflicting fields rather than treating the overview as resolved. No holdout-driven tuning followed this evaluation. See [live results](evaluation/results/live-2026-11-15.json) and [verification notes](docs/verification.md).
+
+The saved live profile example also marks Python basics as matched where the project's conservative rule expects partial because the employer's skill level is unspecified. Its quotes and structure validate, but that interpretation is a known error. The simulated demo shows the intended partial classification. Review status labels and explanations; evidence validation cannot establish semantic correctness.
+
 Exit codes: 0 success, 2 arguments/input/configuration, 3 provider failure, 4 invalid response/evidence, 5 output-write failure.
 
 ## AI assistance
@@ -64,4 +68,4 @@ Codex wrote implementation and tests with separate worker ownership and independ
 
 Create a Gemini key in a Free-tier project with no billing at [Google AI Studio](https://aistudio.google.com/apikey). In Windows user environment variables, set `GEMINI_API_KEY` and restart the process that runs Codex. Never paste the key into chat or commit it. An explicit Free-tier confirmation is required before development live requests. Development spending is US$0; no paid fallback is authorized.
 
-The selected model is `gemini-3.1-flash-lite`. Access/quota and live behavior are unverified. Free-tier content may be used to improve Google's products; development sends fictional advertisements/profiles only. See [Google's terms](https://aistudio.google.com/docs/terms).
+The selected model is `gemini-3.1-flash-lite`. One account's successful live checks do not guarantee availability or quota for another account. Free-tier content may be used to improve Google's products; development sends fictional advertisements/profiles only. See [Google's terms](https://aistudio.google.com/docs/terms).

@@ -1,0 +1,44 @@
+{
+  "session_attempt_limit": 24,
+  "prior_sdk_attempts": 8,
+  "profile_smoke": "passed",
+  "evaluation": "completed",
+  "simulated": false,
+  "profile_usage": {
+    "input_tokens": 643,
+    "output_tokens": 624,
+    "total_tokens": 1267
+  },
+  "evaluation_failed_extractions": 0,
+  "evaluation_failed_cases": [
+    {
+      "case_id": "val-materials",
+      "variant": "zero-shot"
+    },
+    {
+      "case_id": "val-materials",
+      "variant": "few-shot"
+    },
+    {
+      "case_id": "val-conflict",
+      "variant": "zero-shot"
+    },
+    {
+      "case_id": "val-conflict",
+      "variant": "few-shot"
+    },
+    {
+      "case_id": "holdout-preferred",
+      "variant": "zero-shot"
+    },
+    {
+      "case_id": "holdout-preferred",
+      "variant": "few-shot"
+    },
+    {
+      "case_id": "holdout-responsibility",
+      "variant": "zero-shot"
+    }
+  ],
+  "total_session_sdk_attempts": 23
+}

@@ -1,0 +1,541 @@
+{
+  "schema_version": "1.0",
+  "simulated": false,
+  "model_accuracy_measured": true,
+  "scoring": "Casefolded whitespace-normalized exact category/text matching; equivalent paraphrases can be counted as errors. Classification errors overlap with omission/unsupported counts; do not add those counts together. Unsupported means absent from expected labels, not proven hallucination; inspect the case details.",
+  "label_provenance": "Agent-authored labels; independently agent-reviewed; no human review.",
+  "case_count": 6,
+  "planned_extractions": 12,
+  "logical_requests": 12,
+  "http_attempts": 13,
+  "http_attempt_limit": 14,
+  "failed_extractions": 0,
+  "failed_cases": [
+    {
+      "case_id": "val-materials",
+      "variant": "zero-shot"
+    },
+    {
+      "case_id": "val-materials",
+      "variant": "few-shot"
+    },
+    {
+      "case_id": "val-conflict",
+      "variant": "zero-shot"
+    },
+    {
+      "case_id": "val-conflict",
+      "variant": "few-shot"
+    },
+    {
+      "case_id": "holdout-preferred",
+      "variant": "zero-shot"
+    },
+    {
+      "case_id": "holdout-preferred",
+      "variant": "few-shot"
+    },
+    {
+      "case_id": "holdout-responsibility",
+      "variant": "zero-shot"
+    }
+  ],
+  "results": [
+    {
+      "case_id": "val-materials",
+      "split": "validation",
+      "variant": "zero-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 4.955888100000038,
+      "processing_seconds": 4.956144600000016,
+      "usage": {
+        "input_tokens": 207,
+        "output_tokens": 325,
+        "total_tokens": 532
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 8,
+        "valid": 8,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 8,
+        "predicted_items": 8,
+        "correct_items": 7,
+        "omitted_items": 1,
+        "unsupported_items": 1,
+        "classification_errors": 0,
+        "omitted": [
+          {
+            "category": "preferred",
+            "text": "docker",
+            "count": 1
+          }
+        ],
+        "unsupported": [
+          {
+            "category": "preferred",
+            "text": "docker knowledge",
+            "count": 1
+          }
+        ]
+      },
+      "failed": false,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "case_id": "val-materials",
+      "split": "validation",
+      "variant": "few-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 3.6308010000000195,
+      "processing_seconds": 3.63101359999996,
+      "usage": {
+        "input_tokens": 1063,
+        "output_tokens": 327,
+        "total_tokens": 1390
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 8,
+        "valid": 8,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 8,
+        "predicted_items": 8,
+        "correct_items": 7,
+        "omitted_items": 1,
+        "unsupported_items": 1,
+        "classification_errors": 0,
+        "omitted": [
+          {
+            "category": "preferred",
+            "text": "docker",
+            "count": 1
+          }
+        ],
+        "unsupported": [
+          {
+            "category": "preferred",
+            "text": "docker knowledge",
+            "count": 1
+          }
+        ]
+      },
+      "failed": false,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "case_id": "val-conflict",
+      "split": "validation",
+      "variant": "zero-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 4.505070799999885,
+      "processing_seconds": 4.505292699999927,
+      "usage": {
+        "input_tokens": 192,
+        "output_tokens": 269,
+        "total_tokens": 461
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 6,
+        "valid": 6,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 5,
+        "correct_items": 3,
+        "omitted_items": 1,
+        "unsupported_items": 2,
+        "classification_errors": 0,
+        "omitted": [
+          {
+            "category": "ambiguities",
+            "text": "remote work conflicts with daily office attendance.",
+            "count": 1
+          }
+        ],
+        "unsupported": [
+          {
+            "category": "overview.work_arrangement",
+            "text": "fully remote and daily office attendance",
+            "count": 1
+          },
+          {
+            "category": "ambiguities",
+            "text": "the job's work arrangement is contradictory.",
+            "count": 1
+          }
+        ]
+      },
+      "failed": false,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "case_id": "val-conflict",
+      "split": "validation",
+      "variant": "few-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 1.449339499999951,
+      "processing_seconds": 1.4495237999999517,
+      "usage": {
+        "input_tokens": 1048,
+        "output_tokens": 289,
+        "total_tokens": 1337
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 7,
+        "valid": 7,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 6,
+        "correct_items": 3,
+        "omitted_items": 1,
+        "unsupported_items": 3,
+        "classification_errors": 0,
+        "omitted": [
+          {
+            "category": "ambiguities",
+            "text": "remote work conflicts with daily office attendance.",
+            "count": 1
+          }
+        ],
+        "unsupported": [
+          {
+            "category": "overview.work_arrangement",
+            "text": "fully remote",
+            "count": 1
+          },
+          {
+            "category": "required",
+            "text": "daily office attendance",
+            "count": 1
+          },
+          {
+            "category": "ambiguities",
+            "text": "the work arrangement is described as both fully remote and requiring daily office attendance.",
+            "count": 1
+          }
+        ]
+      },
+      "failed": false,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "case_id": "val-injection",
+      "split": "validation",
+      "variant": "zero-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 33.646743600000036,
+      "processing_seconds": 33.64692480000008,
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 210,
+        "total_tokens": 413
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "val-injection",
+      "split": "validation",
+      "variant": "few-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 3.067713200000071,
+      "processing_seconds": 3.0678333999999268,
+      "usage": {
+        "input_tokens": 1059,
+        "output_tokens": 210,
+        "total_tokens": 1269
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-preferred",
+      "split": "holdout",
+      "variant": "zero-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 21.079152300000032,
+      "processing_seconds": 21.079366800000116,
+      "usage": {
+        "input_tokens": 190,
+        "output_tokens": 239,
+        "total_tokens": 429
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 5,
+        "valid": 5,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 5,
+        "predicted_items": 5,
+        "correct_items": 4,
+        "omitted_items": 1,
+        "unsupported_items": 1,
+        "classification_errors": 0,
+        "omitted": [
+          {
+            "category": "preferred",
+            "text": "r",
+            "count": 1
+          }
+        ],
+        "unsupported": [
+          {
+            "category": "preferred",
+            "text": "r experience",
+            "count": 1
+          }
+        ]
+      },
+      "failed": false,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "case_id": "holdout-preferred",
+      "split": "holdout",
+      "variant": "few-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 1.634103800000048,
+      "processing_seconds": 1.634255800000119,
+      "usage": {
+        "input_tokens": 1046,
+        "output_tokens": 239,
+        "total_tokens": 1285
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 5,
+        "valid": 5,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 5,
+        "predicted_items": 5,
+        "correct_items": 4,
+        "omitted_items": 1,
+        "unsupported_items": 1,
+        "classification_errors": 0,
+        "omitted": [
+          {
+            "category": "preferred",
+            "text": "r",
+            "count": 1
+          }
+        ],
+        "unsupported": [
+          {
+            "category": "preferred",
+            "text": "r experience",
+            "count": 1
+          }
+        ]
+      },
+      "failed": false,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "case_id": "holdout-responsibility",
+      "split": "holdout",
+      "variant": "zero-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 5.310549000000037,
+      "processing_seconds": 5.311192800000072,
+      "usage": {
+        "input_tokens": 199,
+        "output_tokens": 214,
+        "total_tokens": 413
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 3,
+        "omitted_items": 1,
+        "unsupported_items": 1,
+        "classification_errors": 0,
+        "omitted": [
+          {
+            "category": "overview.employer",
+            "text": "fictional dawn systems",
+            "count": 1
+          }
+        ],
+        "unsupported": [
+          {
+            "category": "overview.employer",
+            "text": "dawn systems",
+            "count": 1
+          }
+        ]
+      },
+      "failed": false,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "case_id": "holdout-responsibility",
+      "split": "holdout",
+      "variant": "few-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 1.3403187999999773,
+      "processing_seconds": 1.3404857000000447,
+      "usage": {
+        "input_tokens": 1055,
+        "output_tokens": 220,
+        "total_tokens": 1275
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 4,
+        "valid": 4,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 4,
+        "predicted_items": 4,
+        "correct_items": 4,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-unicode",
+      "split": "holdout",
+      "variant": "zero-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 1.5242699999998877,
+      "processing_seconds": 1.5269005000000107,
+      "usage": {
+        "input_tokens": 208,
+        "output_tokens": 282,
+        "total_tokens": 490
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 7,
+        "valid": 7,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 7,
+        "predicted_items": 7,
+        "correct_items": 7,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "case_id": "holdout-unicode",
+      "split": "holdout",
+      "variant": "few-shot",
+      "simulated": false,
+      "model": "gemini-3.1-flash-lite",
+      "response_seconds": 1.9994358999999804,
+      "processing_seconds": 1.9998282999999901,
+      "usage": {
+        "input_tokens": 1064,
+        "output_tokens": 290,
+        "total_tokens": 1354
+      },
+      "format_valid": true,
+      "quotes": {
+        "total": 7,
+        "valid": 7,
+        "invalid": 0
+      },
+      "metrics": {
+        "expected_items": 7,
+        "predicted_items": 7,
+        "correct_items": 7,
+        "omitted_items": 0,
+        "unsupported_items": 0,
+        "classification_errors": 0,
+        "omitted": [],
+        "unsupported": []
+      },
+      "failed": false,
+      "exact_match": true,
+      "error": null
+    }
+  ],
+  "initial_session_sdk_attempts": 10
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "analysis": {
+    "overview": {
+      "title": {
+        "text": "AI Engineer Intern",
+        "quote": "AI Engineer Intern"
+      },
+      "employer": null,
+      "location": null,
+      "work_arrangement": null,
+      "employment_type": null,
+      "salary": null,
+      "deadline": null,
+      "working_hours": null
+    },
+    "required": [
+      {
+        "text": "university students",
+        "quote": "Applicants must be university students"
+      },
+      {
+        "text": "Python experience",
+        "quote": "Python and Git experience"
+      },
+      {
+        "text": "Git experience",
+        "quote": "Python and Git experience"
+      }
+    ],
+    "preferred": [
+      {
+        "text": "SQL knowledge",
+        "quote": "SQL knowledge is preferred."
+      }
+    ],
+    "responsibilities": [
+      {
+        "text": "help build applications using language models",
+        "quote": "You will help build applications using language models."
+      }
+    ],
+    "application_materials": [
+      {
+        "text": "GitHub portfolio",
+        "quote": "Include a GitHub portfolio with your application."
+      }
+    ],
+    "ambiguities": []
+  },
+  "comparison": null,
+  "provider": "gemini",
+  "model": "gemini-3.1-flash-lite",
+  "prompt": "zero-shot",
+  "simulated": false,
+  "portfolio_availability": null,
+  "usage": {
+    "input_tokens": 207,
+    "output_tokens": 310,
+    "total_tokens": 517
+  }
+}

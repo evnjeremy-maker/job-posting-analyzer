@@ -1,0 +1,10 @@
+{
+  "session_attempt_limit": 24,
+  "prior_sdk_attempts": 5,
+  "profile_smoke": "pending",
+  "evaluation": "pending",
+  "simulated": false,
+  "error_type": "ResponseError",
+  "error_message": "Comparison validation failed: Comparison status requires explicit profile evidence.",
+  "total_session_sdk_attempts": 7
+}

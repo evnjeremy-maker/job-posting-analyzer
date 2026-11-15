@@ -1,6 +1,18 @@
 # Progress
 
-Status: awaiting-user
+Status: implementation
+
+## Live verification resumed — 2026-11-15
+
+Jeremy configured the key and requested another check. Presence-only checks now confirm `GEMINI_API_KEY` in the process and user environment; its value was not displayed or stored. The earlier Free-tier/no-billing confirmation remains valid. Begin bounded fictional-input live smoke checks and prompt evaluation, keeping the total SDK request attempts within 24 for this live verification session. No paid fallback or additional provider is authorized.
+
+Live verification completed within **23 SDK attempts** (cap 24), including sandbox transport failure, legacy-schema diagnostics, and comparison failures before fixes. The legacy `response_schema` path was rejected with HTTP 400 for `additional_properties`; a failing regression preceded switching to `response_json_schema` generated from the same Pydantic model. Strict local validation was preserved and independent review passed. A missing SQL comparison initially lacked evidence and was rejected; comparison instructions now explicitly require negative evidence pointers as well. The subsequent real extraction-plus-comparison workflow passed all four comparisons. Failure evidence remains recorded, not presented as successful analysis.
+
+Both extraction prompts then completed 6 validation/holdout cases each: zero failed extractions, 34/34 and 35/35 exact source quotes, and 2/6 versus 3/6 complete normalized label matches. The small test set and paraphrase-sensitive scoring do not establish general semantic accuracy or superiority. The conflict example remains a documented limitation. No holdout-driven prompt tuning occurred. Live JSON artifacts and actual usage are saved in evaluation/results and examples/output. No monetary cost estimate is invented; the approved account remains unbilled Free tier.
+
+GitHub identity was checked through both the connector and existing Git credential manager: both identify evnjeremy-maker. The public repository name job-posting-analyzer returned 404 (available). Publication and observed CI are the remaining tasks. No credentials were displayed or stored in the repository.
+
+Independent publication review identified a semantic limitation in the live profile artifact: Python basics was marked matched rather than the intended conservative partial. The four comparisons passed structural/evidence checks only. This error is now explicit in README and verification notes; the original output is preserved, no validator was weakened, and no retry was used to cherry-pick a favorable example. Working with evidence does not guarantee model interpretation.
 
 ## Offline implementation verified — 2026-11-15
 
