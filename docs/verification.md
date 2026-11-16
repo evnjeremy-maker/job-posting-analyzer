@@ -1,5 +1,34 @@
 # Verification record
 
+## Localhost frontend adapter — 2026-11-16
+
+The Python adapter and CLI gate passed Ruff, formatting (48 files), and **215 offline tests in 5.22 seconds**. The 35 new web tests cover token/origin/Host checks, malformed headers and paths, streamed request limits, schema/input failures, sanitized errors, concurrency, shared budget, static containment, startup, demo and CLI binding. Independent backend review passed after regressions fixed non-ASCII token handling, invalid static paths and explicit framework telemetry disablement. Its separate focused run passed 49 web/CLI tests in 2.48 seconds.
+
+Windows asyncio needs a local socket-pair for its event loop; this host's sandbox hangs during that initialization. Verification used a scoped escalation. HTTP tests remained in-process ASGI, and the per-test socket connection ban stayed enabled. No Gemini requests, key reads or live accuracy measurement occurred.
+
+Frontend: **20 tests passed**, `npm run typecheck` passed and `npm run build` produced the React/Vite bundle with locally served font files. Independent code review passed. The design detector reported four Instrument Serif usage warnings; this typeface is explicitly required by the user's portfolio reference, so it was retained. This was not a contrast or functionality finding.
+
+Observed browser click-through:
+
+| Control / state | Observed outcome |
+| --- | --- |
+| Empty Analyze job | Nonblank/64 KiB validation notice; no submitted analysis |
+| Load fictional demo | Existing simulated Report, explicit no-API label, missing metadata shown |
+| Compare with my profile | All profile fields and JSON import appeared |
+| Import .txt | Fictional job file populated advertisement editor |
+| Import profile JSON | Fictional student profile populated skills and other form fields |
+| Advanced options / Few-shot | Selected few-shot; returned fixture report displayed that variant |
+| Analyze job on fixture server | Loading status, extraction/comparison Report and decremented attempt budget; provider model explicitly fictional-browser-fixture |
+| Python and SQL evidence | Opened advertisement quotes, profile pointers/quotes and explanations |
+| Required/preferred counts | Separate 2 matched/1 partial required and 1 missing preferred in fixture output |
+| Edit profile after result | Earlier-submission notice appeared |
+| Download JSON | Actual fictional JSON download event; browser saved to default Downloads, outside intended workspace; file left untouched |
+| Unsupported fictional fixture input | Sanitized error; input retained; controls recovered; old result marked stale |
+| Workspace / Results navigation | Reached existing sections |
+| Desktop / mobile | Editorial split layout and stacked layout inspected, evidence readable; observed 390px viewport document width 381px (no horizontal overflow) |
+
+The fixture server injects a local SimulatedProvider subclass through create_app; its transient report has the real transport's provider label but a fictional-browser-fixture model. It is browser wiring proof, not a Gemini output or accuracy claim; it was not added to published examples. Browser logs returned an empty error list at the inspected error state. Temporary viewport controls were reset once during testing, but the final interruption occurred after another mobile override; its final reset could not be observed. Browser tools were removed before final keyboard-only/reduced-motion runtime checks. Focus styles, native input/disclosure semantics and reduced-motion CSS were source-inspected; manual accessibility confirmation remains pending.
+
 ## Published delivery — 2026-11-15
 
 - Repository: https://github.com/evnjeremy-maker/job-posting-analyzer, public, default branch main, no license file. Public API readback confirmed these settings.

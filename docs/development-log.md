@@ -1,5 +1,13 @@
 # Development log
 
+## 2026-11-16: Localhost interface
+
+Jeremy approved expanding the terminal project with a local browser workspace, using his portfolio's visual language. Workers own backend and frontend separately; the parent owns integration, docs and browser checks, with an independent read-only reviewer. The backend reuses the production evidence pipeline and existing Report/Profile formats. A loopback-only API adds origin/Host/token checks, bounded content, a shared request budget and a concurrency lock. FastAPI's installed telemetry configuration is explicitly disabled rather than inherited from environment settings.
+
+The full Python gate passed 215 tests, Ruff and formatting. Frontend verification passed 20 tests, explicit type checking and a production build. The backend/frontend tests first failed with missing modules before implementation. Independent review prompted failing regressions and fixes for malformed token/path handling, telemetry configuration and file-read/submission races. Development verification used only fictional inputs and no Gemini calls.
+
+Desktop/mobile browser checks exercised actual imports, demo, evidence, counts, submission via a fictional provider, changed-input notices, export and a controlled sanitized error. Browser tools were interrupted before the final keyboard-only/reduced-motion runtime pass; source inspection is not represented as a completed runtime check. The browser placed the fictional export in its default Downloads directory rather than this repository; the file was left untouched and the boundary mistake is recorded in progress. Updating protected AGENTS.md was denied by the existing hook; it was preserved, with user-authorized scope expansion recorded in PRODUCT.md, DESIGN.md and progress instead.
+
 ## 2026-11-15: Public delivery and CI
 
 The parent published the approved public repository under evnjeremy-maker using the existing Git credential manager because the connected GitHub tools could not create repositories. Connector and credential-manager identities matched. The local commit history was pushed without force and without a license file. Windows and Linux CI both passed for f393495; repository visibility, main branch and absent license were checked through GitHub's public API. No GitHub issues, comments, review requests, paid operations or credential changes were made. A final documentation commit records observed results and known semantic limitations.

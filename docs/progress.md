@@ -1,6 +1,26 @@
 # Progress
 
-Status: complete
+Status: awaiting-user
+
+## Frontend publication authorized — 2026-11-16
+
+Jeremy requested pushing the newest version to GitHub after trying the local interface. Pre-publication verification passed Ruff, formatting, 215 Python tests (7.43 seconds), 20 frontend tests, TypeScript checking and the production build. Previously completed independent backend/frontend review remains applicable; no application code changed afterward. Publishable source paths contain no matching Gemini/GitHub token or private-key patterns; ignored environments, caches, generated bundles and local hook records are excluded. No credentials were read and no Gemini calls were made for this publication. The outstanding manual keyboard-only/reduced-motion runtime checks remain disclosed. The commit/push and hosted CI outcome will be reported after observation.
+
+## Localhost frontend — 2026-11-16
+
+Jeremy explicitly approved implementing the localhost frontend plan, expanding the former terminal-only scope to React/TypeScript/Vite and a loopback-only FastAPI adapter while retaining the CLI and evidence validation. Visual reference: Jeremy's portfolio. Antislop applies during design and build. Local review precedes publication of this addition.
+
+Implementation is ready for local review. Parent owns integration, documentation and browser verification. Backend worker owns server/CLI/Python dependencies/backend tests. Frontend worker owns frontend source/dependencies/fonts/tests. No Gemini calls or credential reads occurred in this iteration.
+
+Observed proof: Python verification passed Ruff, formatting and 215 tests (5.22 seconds). Frontend passed 20 tests, explicit TypeScript checking and production build. Independent code review passed after fixes for malformed token/path handling, explicit FastAPI telemetry disablement and an async import/submission race. Tests first failed before backend/frontend modules existed; the import-race regression also failed before its fix.
+
+Browser checks observed desktop and mobile layouts; blank-submit validation; fictional demo; job/profile file imports; optional profile form; few-shot selection; controlled two-stage submission against a local fictional provider; source/profile evidence expansion; separate counts; changed-input notice; JSON download; and sanitized error recovery with retained inputs. This transport test is not a live Gemini result. The controlled error generated no browser error log entries at the moment inspected. Browser tools were interrupted/removed before the final keyboard-only and reduced-motion runtime pass; those behaviors were source-inspected, not claimed as fully exercised. Exact click-through evidence is in docs/verification.md.
+
+The browser export test saved a fictional file to its default Downloads directory (`job-analysis.json`), outside the intended project boundary. This was an unintended output location; it was not read, modified or removed afterward. No other outside project writes were intentionally performed. Future export tests should intercept downloads or select a project-local destination.
+
+The temporary fixture server stopped during the tool interruption. The actual app server was restarted at http://127.0.0.1:8000 with no API requests. No commit, push or deployment of this addition occurred; local user review and the outstanding manual accessibility pass remain.
+
+The PreToolUse policy rejected a patch to protected AGENTS.md. No alternate write path was used; that file retains its historical terminal-only wording, superseded for this task by Jeremy's explicit frontend authorization. Updated scope is recorded here and in PRODUCT.md and DESIGN.md.
 
 ## Completed project delivery — 2026-11-15
 

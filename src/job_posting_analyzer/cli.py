@@ -43,7 +43,19 @@ def parser() -> argparse.ArgumentParser:
     mode.add_argument("--live", action="store_true")
     evaluate.add_argument("--split", choices=["validation", "holdout", "all"], default="all")
     evaluate.add_argument("--max-requests", type=int, default=12)
+    serve = commands.add_parser("serve", help="Open the loopback-only browser workspace.")
+    serve.add_argument("--port", type=local_port, default=8000)
     return command
+
+
+def local_port(value):
+    try:
+        port = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError("Port must be between 1 and 65535.") from None
+    if not 1 <= port <= 65535:
+        raise argparse.ArgumentTypeError("Port must be between 1 and 65535.")
+    return port
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -52,6 +64,11 @@ def main(argv: list[str] | None = None) -> int:
             stream.reconfigure(encoding="utf-8", errors="backslashreplace")
     args = parser().parse_args(argv)
     try:
+        if args.command == "serve":
+            from .web import serve
+
+            serve(port=args.port)
+            return 0
         if getattr(args, "output", None):
             preflight_output(args.output, overwrite=args.overwrite)
         if args.command == "demo":

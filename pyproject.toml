@@ -5,15 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "job-posting-analyzer"
 version = "0.1.0"
-description = "Evidence-backed job advertisement analysis in the terminal"
+description = "Evidence-backed job advertisement analysis in the terminal and on localhost"
 requires-python = ">=3.12"
-dependencies = ["google-genai", "pydantic>=2,<3"]
+dependencies = ["google-genai", "pydantic>=2,<3", "fastapi>=0.163,<1", "uvicorn>=0.54,<1"]
 
 [project.scripts]
 job-analyzer = "job_posting_analyzer.cli:main"
 
 [project.optional-dependencies]
-dev = ["pytest", "ruff"]
+dev = ["pytest", "ruff", "httpx>=0.28,<1"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

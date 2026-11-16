@@ -1,6 +1,6 @@
 # AI Job Posting Analyzer
 
-Python terminal application that extracts evidence-backed job requirements and optionally compares a self-reported profile. It organizes evidence; it does not predict hiring outcomes. Extraction and profile comparison were verified against Gemini on fictional inputs; measured limitations are documented below.
+Python application with a terminal interface and a localhost browser workspace that extracts evidence-backed job requirements and optionally compares a self-reported profile. It organizes evidence; it does not predict hiring outcomes. Extraction and profile comparison were verified against Gemini on fictional inputs; measured limitations are documented below.
 
 ## Bootstrap
 
@@ -22,6 +22,34 @@ The verification command runs Ruff and offline pytest tests. It requires no API 
 ## Current state
 
 The application, fictional demonstration, validation, and offline evaluation are implemented. See [progress](docs/progress.md), [verification](docs/verification.md), [architecture](docs/architecture.md), and [development log](docs/development-log.md) for actual checks and outstanding work. Native hook execution was verified separately; hooks do not establish model accuracy.
+
+## Localhost browser workspace
+
+The browser interface follows Jeremy's portfolio typography and editorial layout. It supports job text/import, an optional profile form or JSON import, evidence disclosures, required/preferred comparison counts, and JSON download. The existing CLI remains available.
+
+After the Python bootstrap above, use Node.js 22.22.2+ in the 22 release line, 24.15.0+ in the 24 release line, or 26+, and run from the repository root:
+
+```powershell
+npm.cmd --prefix frontend ci
+npm.cmd --prefix frontend run build
+.\.venv\Scripts\job-analyzer.exe serve
+```
+
+Open http://127.0.0.1:8000. On Linux/macOS use `npm` and `.venv/bin/job-analyzer`. An occupied port can be changed with `serve --port 8001`; use the matching URL. The server binds only to `127.0.0.1`, not the local network. Keep its terminal open while using the app; Ctrl+C stops it.
+
+**Load fictional demo** works without a Gemini key or API call. **Analyze job** sends submitted job text and optional profile to Google using the server's `GEMINI_API_KEY`. Never enter a key in the browser. Use an unbilled Free-tier project; development inputs must be fictional. Free-tier quota is controlled by Google, and the app does not verify billing settings.
+
+Inputs and results stay in memory until you explicitly download JSON. Refreshing discards them. The server permits one live analysis at a time and shares a 24-SDK-attempt budget per run, including provider retries. A new server run resets this local budget; it does not reset Google's quota. There is no automatic frontend retry or paid fallback. Source/profile quote validation does not prove that a model's interpretation is correct.
+
+Frontend checks, run independently of the Python verification gate:
+
+```powershell
+npm.cmd --prefix frontend run typecheck
+npm.cmd --prefix frontend test
+npm.cmd --prefix frontend run build
+```
+
+Built assets and fonts are served locally; no font CDN or analytics runs in the browser. Font license notices are retained in `frontend/public/fonts/` and listed in `frontend/THIRD_PARTY_NOTICES.md`. During frontend development, run `npm.cmd --prefix frontend run watch` alongside the Python server, then reload the browser after changes. This addition is intended for local review; public hosting needs a separate security/deployment design.
 
 ## Usage
 
