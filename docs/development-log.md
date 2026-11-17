@@ -1,5 +1,11 @@
 # Development log
 
+## 2026-11-16: Reviewed poster transcription
+
+Jeremy approved direct Gemini image transcription followed by editable text review, with Picture/Text drafts and the existing analyzer. Backend/frontend workers had separate ownership; parent handled docs, synthetic poster fixture, the bounded live check and browser integration. Independent review caught palette PNG alpha loss, and a later self-review caught acceptance of a truncated PNG IEND; failing regressions preceded both fixes. Final proof:247 Python tests,29 frontend tests, Ruff/formatting, TypeScript/build and independent review passed.
+
+The single hosted smoke used one SDK attempt and fictional content only, matching reference text ignoring whitespace. Saved usage is separate from analysis usage. All other checks used offline mocks or a local fictional provider; no key was logged or saved. Browser checks exercised keyboard review/tab operation, separate drafts, review reset, analysis, removal, errors and desktop/mobile geometry. Reduced-motion CSS was inspected without changing OS settings. No transcript export was written outside the repository during this iteration. The latest feature remains local; no commit/push is authorized until requested.
+
 ## 2026-11-16: Localhost interface
 
 Jeremy approved expanding the terminal project with a local browser workspace, using his portfolio's visual language. Workers own backend and frontend separately; the parent owns integration, docs and browser checks, with an independent read-only reviewer. The backend reuses the production evidence pipeline and existing Report/Profile formats. A loopback-only API adds origin/Host/token checks, bounded content, a shared request budget and a concurrency lock. FastAPI's installed telemetry configuration is explicitly disabled rather than inherited from environment settings.

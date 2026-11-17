@@ -9,3 +9,14 @@ export function downloadReport(report: unknown): void {
   anchor.click();
   URL.revokeObjectURL(url);
 }
+
+export function downloadTranscript(text: string): void {
+  const url = URL.createObjectURL(
+    new Blob([text], { type: "text/plain;charset=utf-8" }),
+  );
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = "job-transcription.txt";
+  anchor.click();
+  URL.revokeObjectURL(url);
+}

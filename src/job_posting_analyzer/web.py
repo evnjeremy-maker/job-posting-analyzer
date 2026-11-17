@@ -15,7 +15,9 @@ from .analysis import analyze
 from .demo import run_demo
 from .errors import InputError, ProviderError, ResponseError
 from .gemini import GeminiProvider
+from .images import MAX_IMAGE_BYTES, normalize_image
 from .models import Profile, StrictModel
+from .transcription import validate_transcription
 
 MAX_BODY_BYTES = 160 * 1024
 MAX_INPUT_BYTES = 64 * 1024
@@ -77,7 +79,7 @@ class LocalSecurityMiddleware:
                             (
                                 b"default-src 'self'; script-src 'self'; "
                                 b"style-src 'self' 'unsafe-inline'; "
-                                b"font-src 'self'; img-src 'self' data:; connect-src 'self'; "
+                                b"font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; "
                                 b"frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
                             ),
                         ),
@@ -91,16 +93,18 @@ class LocalSecurityMiddleware:
             )
             return
         if scope["method"] == "POST":
+            body_limit = MAX_IMAGE_BYTES if scope["path"] == "/api/transcribe" else MAX_BODY_BYTES
             body = bytearray()
             while True:
                 message = await receive()
                 if message["type"] == "http.disconnect":
                     return
                 chunk = message.get("body", b"")
-                if len(body) + len(chunk) > MAX_BODY_BYTES:
-                    await failure("body_too_large", "Request exceeds the 160 KiB limit.", 413)(
-                        scope, receive, secure_send
-                    )
+                if len(body) + len(chunk) > body_limit:
+                    limit_label = "8 MiB" if body_limit == MAX_IMAGE_BYTES else "160 KiB"
+                    await failure(
+                        "body_too_large", f"Request exceeds the {limit_label} limit.", 413
+                    )(scope, receive, secure_send)
                     return
                 body.extend(chunk)
                 if not message.get("more_body", False):
@@ -146,6 +150,64 @@ def create_app(*, port=8000, provider=None, frontend_dir=None):
     @app.get("/api/demo")
     def demo():
         return run_demo().model_dump(mode="json")
+
+    @app.post("/api/transcribe")
+    async def transcribe(request: Request):
+        if not app.state.analysis_lock.acquire(blocking=False):
+            return failure("busy", "Another request is running. Wait for it to finish.", 429)
+        try:
+            provider = app.state.provider
+            if provider.attempts_used >= 24:
+                return failure(
+                    "budget_exhausted", "This server run has reached its 24-attempt limit.", 429
+                )
+            try:
+                image, mime = await run_in_threadpool(
+                    normalize_image, await request.body(), request.headers.get("content-type", "")
+                )
+            except InputError:
+                return failure(
+                    "invalid_image",
+                    "Choose a valid static JPEG/PNG up to 8 MiB and 20 megapixels; "
+                    "normalized content must fit 12 MiB.",
+                    422,
+                )
+            result = validate_transcription(
+                await run_in_threadpool(provider.transcribe, image, mime)
+            )
+            return {
+                **result.model_dump(mode="json"),
+                "model": provider.model,
+                "usage": getattr(provider, "last_usage", None),
+            }
+        except InputError:
+            return failure(
+                "configuration", "Set GEMINI_API_KEY locally before reading a poster.", 422
+            )
+        except ProviderError:
+            if app.state.provider.attempts_used >= 24:
+                return failure(
+                    "budget_exhausted", "This server run has reached its 24-attempt limit.", 429
+                )
+            return failure(
+                "provider",
+                "Gemini request failed. Check access, quota, authentication or network.",
+                502,
+            )
+        except ResponseError:
+            return failure(
+                "invalid_response",
+                "The poster text could not be accepted. Try a clearer image.",
+                422,
+            )
+        except Exception:
+            return failure(
+                "internal",
+                "Poster reading failed unexpectedly. No transcription was accepted.",
+                500,
+            )
+        finally:
+            app.state.analysis_lock.release()
 
     @app.post("/api/analyze")
     async def analysis(request: Request):

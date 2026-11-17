@@ -22,4 +22,6 @@ The user's specific plan supersedes gpt-taste's random hero/font selection, AIDA
 
 ## Delivery checks
 
+Poster input extends the existing Operate workspace: Picture is the default tab, Text retains pasted/imported advertisements. Image preview and editable transcript sit together at desktop widths and stack on mobile. Review confirmation gates analysis; transcription warnings and separate usage make source uncertainty visible. Selection stays local until the explicit Read text with Gemini action. No new imagery, decorative animations or brand changes are needed.
+
 Check empty/loading/error/demo/live-result states; JSON import/export; evidence disclosures; changed-input notice; desktop/mobile; keyboard focus; reduced motion; browser errors. Record actual evidence in docs/progress.md.

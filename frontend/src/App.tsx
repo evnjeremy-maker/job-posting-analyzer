@@ -10,6 +10,7 @@ import {
   utf8Length,
 } from "./profile";
 import ReportView from "./ReportView";
+import PosterInput from "./PosterInput";
 import type { Profile, ProfileForm, Report } from "./types";
 
 type Session = {
@@ -37,13 +38,18 @@ async function responseData(response: Response) {
 
 export default function App() {
   const [text, setText] = useState("");
+  const [inputMode, setInputMode] = useState<"picture" | "text">("picture");
+  const [pictureText, setPictureText] = useState("");
+  const [pictureReviewed, setPictureReviewed] = useState(false);
   const [includeProfile, setIncludeProfile] = useState(false);
   const [profile, setProfile] = useState<ProfileForm>(emptyProfileForm);
   const [importedProfile, setImportedProfile] = useState<Profile | null>(null);
   const [prompt, setPrompt] = useState<"zero-shot" | "few-shot">("zero-shot");
   const [report, setReport] = useState<Report | null>(null);
   const [stale, setStale] = useState(false);
-  const [busy, setBusy] = useState<"live" | "demo" | null>(null);
+  const [busy, setBusy] = useState<
+    "live" | "demo" | "poster" | "transcribe" | null
+  >(null);
   const [importing, setImporting] = useState(false);
   const [error, setError] = useState("");
   const [session, setSession] = useState<Session | null>(null);
@@ -104,7 +110,12 @@ export default function App() {
   async function run(mode: "live" | "demo") {
     if (inFlight.current) return;
     setError("");
-    if (mode === "live" && (!text.trim() || utf8Length(text) > 65536)) {
+    const source = inputMode === "picture" ? pictureText : text;
+    if (mode === "live" && inputMode === "picture" && !pictureReviewed) {
+      setError("Review the extracted text against the poster before analysis.");
+      return;
+    }
+    if (mode === "live" && (!source.trim() || utf8Length(source) > 65536)) {
       setError("Enter a nonblank advertisement no larger than 64 KiB.");
       return;
     }
@@ -140,7 +151,7 @@ export default function App() {
             "X-Session-Token": currentSession.token,
           },
           body: JSON.stringify({
-            text,
+            text: source,
             profile: profileData,
             prompt_variant: prompt,
           }),
@@ -236,37 +247,109 @@ export default function App() {
                 disabled={busy !== null || importing}
                 className="input-fieldset"
               >
-                <div className="field-topline">
-                  <label htmlFor="job-text">Job advertisement</label>
-                  <label className="file-button" htmlFor="job-file">
-                    Import .txt
-                    <input
-                      id="job-file"
-                      type="file"
-                      accept=".txt,text/plain"
-                      onChange={(event) => void importFile(event, "job")}
-                    />
-                  </label>
+                <div
+                  className="input-tabs"
+                  role="tablist"
+                  aria-label="Advertisement input"
+                >
+                  {(["picture", "text"] as const).map((mode) => (
+                    <button
+                      id={`${mode}-tab`}
+                      key={mode}
+                      type="button"
+                      role="tab"
+                      aria-selected={inputMode === mode}
+                      aria-controls={`${mode}-panel`}
+                      tabIndex={inputMode === mode ? 0 : -1}
+                      onKeyDown={(event) => {
+                        if (
+                          ["ArrowLeft", "ArrowRight", "Home", "End"].includes(
+                            event.key,
+                          )
+                        ) {
+                          event.preventDefault();
+                          const next =
+                            event.key === "Home"
+                              ? "picture"
+                              : event.key === "End"
+                                ? "text"
+                                : inputMode === "picture"
+                                  ? "text"
+                                  : "picture";
+                          changed();
+                          setInputMode(next);
+                          document.getElementById(`${next}-tab`)?.focus();
+                        }
+                      }}
+                      onClick={() => {
+                        if (inputMode !== mode) changed();
+                        setInputMode(mode);
+                      }}
+                    >
+                      {mode === "picture" ? "Picture" : "Text"}
+                    </button>
+                  ))}
                 </div>
-                <textarea
-                  id="job-text"
-                  className="job-editor"
-                  value={text}
-                  onChange={(event) => {
-                    changed();
-                    setText(event.target.value);
-                  }}
-                  placeholder="Paste the full job advertisement here…"
-                  aria-describedby="job-help"
-                  spellCheck="false"
-                />
-                <div className="field-help" id="job-help">
-                  <span>Original wording gives the analysis its evidence.</span>
-                  <span
-                    className={utf8Length(text) > 65536 ? "over-limit" : ""}
-                  >
-                    {(utf8Length(text) / 1024).toFixed(1)} / 64 KiB
-                  </span>
+                <div
+                  id="picture-panel"
+                  role="tabpanel"
+                  aria-labelledby="picture-tab"
+                  hidden={inputMode !== "picture"}
+                >
+                  <PosterInput
+                    disabled={busy !== null || importing}
+                    onChange={(value, reviewed) => {
+                      changed();
+                      setPictureText(value);
+                      setPictureReviewed(reviewed);
+                    }}
+                    onBusy={(operation) => {
+                      inFlight.current = operation !== null;
+                      setBusy(operation);
+                    }}
+                    onSession={setSession}
+                  />
+                </div>
+                <div
+                  id="text-panel"
+                  role="tabpanel"
+                  aria-labelledby="text-tab"
+                  hidden={inputMode !== "text"}
+                >
+                  <div className="field-topline">
+                    <label htmlFor="job-text">Job advertisement</label>
+                    <label className="file-button" htmlFor="job-file">
+                      Import .txt
+                      <input
+                        id="job-file"
+                        type="file"
+                        accept=".txt,text/plain"
+                        onChange={(event) => void importFile(event, "job")}
+                      />
+                    </label>
+                  </div>
+                  <textarea
+                    id="job-text"
+                    className="job-editor"
+                    value={text}
+                    onChange={(event) => {
+                      changed();
+                      setText(event.target.value);
+                    }}
+                    placeholder="Paste the full job advertisement here…"
+                    aria-describedby="job-help"
+                    spellCheck="false"
+                  />
+                  <div className="field-help" id="job-help">
+                    <span>
+                      Original wording gives the analysis its evidence.
+                    </span>
+                    <span
+                      className={utf8Length(text) > 65536 ? "over-limit" : ""}
+                    >
+                      {(utf8Length(text) / 1024).toFixed(1)} / 64 KiB
+                    </span>
+                  </div>
                 </div>
                 <div className="profile-control">
                   <label className="checkbox-label">
@@ -360,7 +443,16 @@ export default function App() {
                   </div>
                 </details>
                 <div className="submit-area">
-                  <button className="primary-button" type="submit">
+                  <button
+                    className="primary-button"
+                    type="submit"
+                    disabled={
+                      inputMode === "picture" &&
+                      (!pictureReviewed ||
+                        !pictureText.trim() ||
+                        utf8Length(pictureText) > 65536)
+                    }
+                  >
                     {busy === "live" ? "Analyzing…" : "Analyze job"}
                   </button>
                   <p>
@@ -389,7 +481,11 @@ export default function App() {
               <p role="status" className="request-status">
                 {busy === "demo"
                   ? "Loading the fixed fictional example. No API request."
-                  : "Waiting for Gemini and validating its evidence. This may take a moment."}
+                  : busy === "poster"
+                    ? "Opening the local poster. No API request."
+                    : busy === "transcribe"
+                      ? "Reading the poster with Gemini. Review its text before analysis."
+                      : "Waiting for Gemini and validating its evidence. This may take a moment."}
               </p>
             )}
             {error && (

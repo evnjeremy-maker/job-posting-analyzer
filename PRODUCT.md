@@ -28,6 +28,8 @@ Use the design language of https://jeremyevan.vercel.app/, as explicitly request
 
 ## Evidence
 
+The approved poster extension accepts one JPEG/PNG, transcribes it through the existing Gemini provider, and requires the user to review/correct text before analysis. The text-input workflow and report schema remain compatible. Source presence is checked against reviewed text, not verified directly against the poster. No local OCR, remote image URLs, Files API, database, camera, batch or PDF support is included.
+
 Existing strict report/profile schemas, fictional demo, evaluation corpus and published CLI. No testimonials, performance claims or human review claims are authorized.
 
 ## Accessibility

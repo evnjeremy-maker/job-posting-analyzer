@@ -1,8 +1,19 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import {
+  fireEvent,
+  render as renderComponent,
+  screen,
+  within,
+} from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 import { downloadReport } from "./report";
 import fixture from "../../examples/output/simulated-demo.json";
+
+function render(...args: Parameters<typeof renderComponent>) {
+  const result = renderComponent(...args);
+  fireEvent.click(screen.getByRole("tab", { name: "Text" }));
+  return result;
+}
 
 beforeEach(() => {
   vi.stubGlobal(

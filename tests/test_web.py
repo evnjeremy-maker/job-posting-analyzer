@@ -75,6 +75,175 @@ def test_demo_needs_no_credentials_or_budget(app, monkeypatch):
     assert "access-control-allow-origin" not in response.headers
 
 
+def poster_bytes():
+    import io
+
+    from PIL import Image
+
+    output = io.BytesIO()
+    Image.new("RGB", (20, 30), "white").save(output, format="PNG")
+    return output.getvalue()
+
+
+def test_poster_transcription_uses_shared_provider_and_separate_usage(app):
+    def transcribe(data, mime):
+        assert data.startswith(b"\x89PNG")
+        assert mime == "image/png"
+        app.state.provider.attempts_used += 1
+        app.state.provider.last_usage = {"total_tokens": 42}
+        return {"text": "Fictional Python internship", "warnings": []}
+
+    app.state.provider.transcribe = transcribe
+    response = request(
+        app,
+        "POST",
+        "/api/transcribe",
+        headers={**headers(app), "Content-Type": "image/png"},
+        content=poster_bytes(),
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "text": "Fictional Python internship",
+        "warnings": [],
+        "model": "fictional-fixture",
+        "usage": {"total_tokens": 42},
+    }
+    assert request(app, "GET", "/api/session").json()["attempts_remaining"] == 23
+
+
+@pytest.mark.parametrize(
+    "content,mime,status",
+    [
+        (b"broken", "image/png", 422),
+        (b"broken", "image/gif", 422),
+        (b"x" * (8 * 1024 * 1024 + 1), "image/png", 413),
+    ],
+)
+def test_invalid_poster_never_contacts_provider(app, content, mime, status):
+    response = request(
+        app,
+        "POST",
+        "/api/transcribe",
+        headers={**headers(app), "Content-Type": mime},
+        content=content,
+    )
+    assert response.status_code == status
+    assert app.state.provider.attempts_used == 0
+
+
+def test_poster_preserves_analysis_body_limit_and_security(app):
+    assert request(app, "POST", "/api/transcribe", content=poster_bytes()).status_code == 403
+    assert (
+        request(
+            app, "POST", "/api/analyze", headers=headers(app), content=b"x" * 200000
+        ).status_code
+        == 413
+    )
+    assert "blob:" in request(app, "GET", "/").headers["content-security-policy"]
+
+
+def test_poster_body_above_analysis_limit_reaches_image_validation(app):
+    response = request(
+        app,
+        "POST",
+        "/api/transcribe",
+        headers={**headers(app), "Content-Type": "image/png"},
+        content=b"x" * 200000,
+    )
+    assert response.status_code == 422
+    assert response.json()["error"]["code"] == "invalid_image"
+
+
+def test_chunked_poster_body_is_bounded(app):
+    async def chunks():
+        for _ in range(9):
+            yield b"x" * (1024 * 1024)
+
+    # Capture headers before entering the event loop used by the helper.
+    auth = headers(app)
+
+    async def bounded():
+        async with httpx.AsyncClient(
+            transport=httpx.ASGITransport(app=app), base_url=ORIGIN
+        ) as client:
+            return await client.post(
+                "/api/transcribe", headers={**auth, "Content-Type": "image/png"}, content=chunks()
+            )
+
+    assert run_async(bounded()).status_code == 413
+
+
+@pytest.mark.parametrize(
+    "error,status",
+    [
+        (ProviderError("PRIVATE payload"), 502),
+        (ResponseError("PRIVATE payload"), 422),
+        (RuntimeError("PRIVATE payload"), 500),
+    ],
+)
+def test_transcription_errors_are_sanitized_and_release_lock(app, error, status):
+    def fail(*args):
+        raise error
+
+    app.state.provider.transcribe = fail
+    response = request(
+        app,
+        "POST",
+        "/api/transcribe",
+        headers={**headers(app), "Content-Type": "image/png"},
+        content=poster_bytes(),
+    )
+    assert response.status_code == status
+    assert "PRIVATE" not in response.text
+    assert app.state.analysis_lock.acquire(blocking=False)
+    app.state.analysis_lock.release()
+
+
+def test_poster_lock_and_budget_are_shared_with_analysis(app):
+    app.state.analysis_lock.acquire()
+    try:
+        response = request(
+            app,
+            "POST",
+            "/api/transcribe",
+            headers={**headers(app), "Content-Type": "image/png"},
+            content=poster_bytes(),
+        )
+        assert response.status_code == 429
+    finally:
+        app.state.analysis_lock.release()
+    app.state.provider.attempts_used = 24
+    response = request(
+        app,
+        "POST",
+        "/api/transcribe",
+        headers={**headers(app), "Content-Type": "image/png"},
+        content=poster_bytes(),
+    )
+    assert response.json()["error"]["code"] == "budget_exhausted"
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        {"text": "[illegible]", "warnings": []},
+        {"text": "é" * 32769, "warnings": []},
+        {"text": "role", "warnings": "bad"},
+    ],
+)
+def test_invalid_poster_response_is_rejected(app, value):
+    app.state.provider.transcribe = lambda *args: value
+    response = request(
+        app,
+        "POST",
+        "/api/transcribe",
+        headers={**headers(app), "Content-Type": "image/png"},
+        content=poster_bytes(),
+    )
+    assert response.status_code == 422
+    assert response.json()["error"]["code"] == "invalid_response"
+
+
 def test_analysis_uses_validated_pipeline_and_shared_attempt_budget(app):
     response = request(
         app,

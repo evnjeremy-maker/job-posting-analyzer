@@ -29,6 +29,25 @@ class GeminiProvider:
     def extract(self, text, variant="zero-shot"):
         return self._generate(extraction_data(text), extraction_instructions(variant), JobAnalysis)
 
+    def transcribe(self, image_bytes, mime_type):
+        from google.genai import types
+
+        from .transcription import (
+            TRANSCRIPTION_INSTRUCTIONS,
+            Transcription,
+            validate_transcription,
+        )
+
+        result = self._generate(
+            [
+                types.Part.from_bytes(data=image_bytes, mime_type=mime_type),
+                types.Part.from_text(text="Read the visible advertisement text."),
+            ],
+            TRANSCRIPTION_INSTRUCTIONS,
+            Transcription,
+        )
+        return validate_transcription(result)
+
     def compare(self, text, analysis, profile):
         from .evidence import requirement_map
 

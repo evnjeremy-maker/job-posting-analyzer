@@ -1,0 +1,17 @@
+{
+  "fictional_input_only": true,
+  "http_status": 200,
+  "sdk_attempts_used": 1,
+  "sdk_attempt_cap": 3,
+  "result": {
+    "text": "FICTIONAL JOB ADVERTISEMENT Cedar Lab AI Engineer Intern Location: Jakarta, Indonesia Hybrid: two office days per week Six-month paid internship Allowance: IDR 3,000,000 per month Working hours: Monday-Friday, 09:00-17:00 WIB Required qualifications Currently enrolled in a university program. Able to write basic Python programs. Experience using Git for personal projects. Preferred qualifications Basic SQL knowledge. Responsibilities Build Python scripts that process text. Test model answers against their sources. How to apply Submit a CV and a GitHub portfolio. Application deadline: 15 December 2026",
+    "warnings": [],
+    "model": "gemini-3.1-flash-lite",
+    "usage": {
+      "input_tokens": 1193,
+      "output_tokens": 148,
+      "total_tokens": 1341
+    }
+  },
+  "matches_reference_ignoring_whitespace": true
+}

@@ -39,6 +39,17 @@ Open http://127.0.0.1:8000. On Linux/macOS use `npm` and `.venv/bin/job-analyzer
 
 **Load fictional demo** works without a Gemini key or API call. **Analyze job** sends submitted job text and optional profile to Google using the server's `GEMINI_API_KEY`. Never enter a key in the browser. Use an unbilled Free-tier project; development inputs must be fictional. Free-tier quota is controlled by Google, and the app does not verify billing settings.
 
+### Read a job poster
+
+1. In the default **Picture** tab, choose one JPEG or PNG (up to 8 MiB and 20 megapixels). Selection and preview stay local.
+2. Click **Read text with Gemini** to send the image to Google. The server validates and re-encodes it in memory, applying orientation and removing metadata; normalized images larger than 12 MiB are rejected. No Google Files API or permanent image upload is used.
+3. Compare the editable transcription against the poster. Correct mistakes, review warnings and `[illegible]` passages, then select **I reviewed this text against the poster**. Editing the text resets this confirmation.
+4. Click **Analyze job**. The optional profile comparison and zero-shot/few-shot choice apply to this reviewed text, not to image recognition. Transcription token usage is shown separately from analysis usage.
+
+The **Text** tab keeps the original pasted/imported text workflow, with a separate draft. Source quotes are validated against text, not image pixels; recognition and interpretation can both be wrong. Download the transcript as `.txt` separately from report JSON. Replacing/removing a poster clears its transcription and review state and marks earlier results stale. PDFs, multiple posters, animated images, camera input, translation and local OCR are not supported.
+
+For a fictional test poster, use `examples/posters/fictional-ai-intern.png`; the neighboring `.txt` contains its reference text. Images and transcription are kept in memory and discarded on page refresh. Both image reading and analysis consume the same server-run SDK attempt budget. The offline demo remains API-free.
+
 Inputs and results stay in memory until you explicitly download JSON. Refreshing discards them. The server permits one live analysis at a time and shares a 24-SDK-attempt budget per run, including provider retries. A new server run resets this local budget; it does not reset Google's quota. There is no automatic frontend retry or paid fallback. Source/profile quote validation does not prove that a model's interpretation is correct.
 
 Frontend checks, run independently of the Python verification gate:

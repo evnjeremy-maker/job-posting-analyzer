@@ -12,6 +12,108 @@
   --missing: #932e35;
   --unclear: #53565b;
 }
+.input-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+}
+.input-tabs button {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 0.7rem 0;
+  font-family: "IBM Plex Mono", monospace;
+}
+.input-tabs button[aria-selected="true"] {
+  border-bottom-color: #161616;
+  font-weight: 700;
+}
+.poster-help {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+.poster-empty {
+  padding: 2rem 1.4rem;
+  background: var(--paper);
+  margin: 1.5rem 0;
+  border: 1px solid var(--rule);
+}
+.poster-empty p:first-child {
+  font:
+    1.7rem "Instrument Serif",
+    serif;
+}
+.poster-empty p:last-child {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.poster-review-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.poster-preview {
+  min-width: 0;
+}
+.poster-preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 580px;
+  object-fit: contain;
+  margin: 0 auto;
+  border: 1px solid var(--rule);
+}
+.poster-preview p {
+  overflow-wrap: anywhere;
+  margin: 0.8rem 0;
+}
+.poster-transcript {
+  min-width: 0;
+}
+.poster-transcript .field-topline {
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+.poster-transcript .job-editor {
+  margin-top: 0.7rem;
+  min-height: 260px;
+}
+.secondary-button {
+  background: #fff;
+  border: 1px solid #161616;
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
+}
+.secondary-button:hover {
+  background: #161616;
+  color: #fff;
+}
+.transcription-warnings {
+  padding: 0.8rem 1rem;
+  background: var(--paper);
+  border-left: 2px solid var(--partial);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+.transcription-warnings ul {
+  padding-left: 1rem;
+}
+@media (min-width: 1200px) {
+  .workspace:has(.poster-review-grid) {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+  .poster-review-grid {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 1.1rem;
+  }
+}
 * {
   box-sizing: border-box;
 }

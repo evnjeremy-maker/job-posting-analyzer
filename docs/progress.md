@@ -1,6 +1,22 @@
 # Progress
 
-Status: awaiting-user
+Status: complete
+
+## Poster publication authorized — 2026-11-17
+
+Jeremy requested pushing the poster feature to GitHub and running localhost. This supersedes the local-only publication restriction below. Pre-commit gate passed Ruff/formatting and 247 Python tests in 6.42 seconds; 29 frontend tests, explicit type checking and production build also passed. The implementation's independent review remains applicable; no application code changed since. Secret-pattern scanning found no matches in changed source/test/docs or the fictional live artifact. Virtual environments, caches, local hook records, dependencies and built bundles remain ignored. No Gemini call or credential read was needed for this publication. Git push and hosted CI outcomes are reported after observation in chat.
+
+## Poster input implementation — 2026-11-16
+
+Jeremy approved Picture/Text tabs, Gemini poster transcription, mandatory editable-text review and the existing analysis pipeline. This explicitly authorizes Pillow and image input despite historical protected AGENTS.md wording. Parent owns docs, integration, fictional poster fixtures, live smoke and browser checks; backend worker owns image/provider/API/dependency/tests; frontend worker owns browser source/tests. A read-only independent reviewer will check integration. No publication is authorized for this addition.
+
+Implemented and verified locally. Final Python gate: Ruff and formatting passed (53 files), 247 tests passed in 13.99 seconds. Frontend: 29 tests, explicit TypeScript checking and production build passed. Independent review passed, including final PNG truncation regression (16 image tests independently passed). Tests first failed before implementation; review-driven palette transparency and truncated IEND cases also failed before fixes. Pillow 13.0.0 is pinned; pip dependency check passed. No commit or publication of this addition occurred.
+
+One real transcription request through the localhost API used one SDK attempt of the approved maximum three. The fictional output matched the neighboring reference text ignoring whitespace, with no returned warnings: 1193 input tokens, 148 output tokens, 1341 total. Artifact: evaluation/results/poster-smoke-2026-11-16.json. This is one clear synthetic poster, not a general OCR-accuracy claim. No further Gemini calls were made; credentials were neither displayed nor stored.
+
+Browser proof used a separate local fictional provider: upload/preview, explicit reading, warnings, review-gated analysis, edit-reset, keyboard Space/arrow tab operation, separate drafts, analysis/evidence, removal/stale notice, validation failure and error recovery. At 1440px the preview/transcript are side by side; at 390px they stack with document width 381px and no horizontal overflow. A visible solid focus outline was observed. Browser error log was empty at the inspected error state. Reduced-motion CSS was present; native OS reduced-motion mode was not toggled. Transcript download is covered by automated tests rather than another default-Downloads write. Viewport override was reset and the actual app at port8000 left open; test server stopped. Final server restart loads the last backend fix.
+
+Source quotes are checked against reviewed text, not image pixels. No local OCR/PDF/batch/camera/translation support is included. UI retains separate transcription usage without changing Report1.0 or CLI behavior. Local-only delivery is complete; GitHub publication requires a later request.
 
 ## Frontend publication authorized — 2026-11-16
 
